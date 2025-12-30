@@ -1,5 +1,43 @@
-#!/bin/sh
+int p = 2;int r = 0;int g = 0;int b = 0;
+void setup() { size(1500, 1500); background(255);}
 
-APPDIR=$(readlink -f "$0")
-APPDIR=$(dirname "$APPDIR")
-$APPDIR/java/bin/java -Djna.nosys=true -Djava.library.path="$APPDIR:$APPDIR/lib" -cp "$APPDIR:$APPDIR/lib/MALPROGRAMM.jar:$APPDIR/lib/core.jar:$APPDIR/lib/jogl-all.jar:$APPDIR/lib/gluegen-rt.jar" MALPROGRAMM "$@"
+void draw() {
+  strokeWeight(p);
+  if (mousePressed) {
+    if (mouseButton == LEFT) {
+      stroke(r, g, b);
+      line(pmouseX, pmouseY, mouseX, mouseY);
+    } else {
+      stroke(255);
+      line(pmouseX, pmouseY, mouseX, mouseY);
+    }
+  }
+
+  if (keyPressed) {
+    if (keyCode == UP) {p++;}
+    if (keyCode == DOWN) { p--;}
+    if (keyCode == LEFT) {r++;g++;b++;    }
+    if (keyCode == RIGHT){r--; g--;b--; }
+      if (key== 'r') {r++; }
+      if (key =='R') { r--;}
+      if (key== 'g') {g++; }
+      if (key =='G') {g--;}
+      if (key== 'b') { b++; }
+      if (key =='B') {b--;}
+    }
+    if (p<=0) {p = 1;
+    }
+    if (r<0) { r = 0;
+    }
+    if (r>255) { r=254;
+    }
+    if (g<0) { g = 0;
+    }
+    if (g>255) {g=254;
+    }
+    if (b<0) { b = 0;
+    }
+    if (b>255) {b=254;
+    }
+  }
+//;) ugly ass code I know. but I am a pathetic 17 year old at this point now btw.
